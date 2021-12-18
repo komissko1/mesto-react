@@ -1,6 +1,6 @@
 import React from "react";
 
-function PopupWithImage(props) {
+function ImagePopup(props) {
   function handleClick(evt) {
     if (
       evt.target.classList.contains("popup_opened") ||
@@ -21,11 +21,11 @@ function PopupWithImage(props) {
           aria-label="Закрыть"
           className="popup__close-button button-effect"
         ></button>
-        <img className="popup__image" src={props.link} alt={props.title} />
-        <p className="popup__img-title">{props.title}</p>
+        <img className="popup__image" src={props.selectedCard.link} alt={props.selectedCard.name} />
+        <p className="popup__img-title">{props.selectedCard.name}</p>
       </div>
     </div>
   );
 }
 
-export default PopupWithImage;
+export default ImagePopup;

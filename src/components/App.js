@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "../index.css";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
 import PopupWithForm from "./PopupWithForm.js";
-import PopupWithImage from "./PopupWithImage.js";
+import ImagePopup from "./ImagePopup.js";
 
 function App() {
   const [isEditAvatarPopupOpen, setAvatarPopupState] = React.useState(false);
@@ -125,29 +125,28 @@ function App() {
     return isAddPlacePopupOpen;
   }
 
-  function handleDeleteCardClick() {
-    return (
-      <PopupWithForm
-        name="delete"
-        title="Вы уверены?"
-        isOpen="true"
-        onClose={selectedCard}
-        children={
-          <>
-            <button type="submit" class="form__save-button">
-              Да
-            </button>
-          </>
-        }
-      />
-    );
-  }
+  // function handleDeleteCardClick() {
+  //   return (
+  //     <PopupWithForm
+  //       name="delete"
+  //       title="Вы уверены?"
+  //       isOpen="true"
+  //       onClose={selectedCard}
+  //       children={
+  //         <>
+  //           <button type="submit" class="form__save-button">
+  //             Да
+  //           </button>
+  //         </>
+  //       }
+  //     />
+  //   );
+  // }
 
   function handleCardClick (card) {
     setSelectedCard(
-      <PopupWithImage
-        title={card.name}
-        link={card.link}
+      <ImagePopup
+        selectedCard={card}
         onClose={closeAllPopups}
       />
     );

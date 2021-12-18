@@ -5,9 +5,11 @@ function PopupWithForm(props) {
     if (
       evt.target.classList.contains("popup_opened") ||
       evt.target.classList.contains("popup__close-button")
-    ) {props.onClose()};
+    ) {
+      props.onClose();
+    }
   }
-
+console.log()
   return (
     <div
       className={`popup popup_type_${props.name} ${
@@ -22,8 +24,11 @@ function PopupWithForm(props) {
           className="popup__close-button button-effect"
         ></button>
         <h3 className="popup__title">{props.title}</h3>
-        <form className="form" name={props.name} noValidate>
+        <form className="form" name={props.name}>
           {props.children}
+          <button type="submit" className="form__save-button">
+            {props.buttonText}
+          </button>
         </form>
       </div>
     </div>

@@ -12,7 +12,9 @@ function ImagePopup(props) {
 
   return (
     <div
-      className="popup popup_type_image popup_opened"
+      className={`popup popup_type_${props.name} ${
+        props.card.link ? "popup_opened" : ""
+      }`}
       onClick={(evt) => handleClick(evt)}
     >
       <div className="popup__image-container">
@@ -21,8 +23,14 @@ function ImagePopup(props) {
           aria-label="Закрыть"
           className="popup__close-button button-effect"
         ></button>
-        <img className="popup__image" src={props.selectedCard.link} alt={props.selectedCard.name} />
-        <p className="popup__img-title">{props.selectedCard.name}</p>
+        {props.card.link && (
+          <img
+            className="popup__image"
+            src={props.card.link}
+            alt={props.card.name}
+          />
+        )}
+        <p className="popup__img-title">{props.card.name}</p>
       </div>
     </div>
   );

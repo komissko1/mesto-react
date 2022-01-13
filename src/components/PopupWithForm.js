@@ -9,7 +9,6 @@ function PopupWithForm(props) {
       props.onClose();
     }
   }
-console.log()
   return (
     <div
       className={`popup popup_type_${props.name} ${
@@ -24,7 +23,7 @@ console.log()
           className="popup__close-button button-effect"
         ></button>
         <h3 className="popup__title">{props.title}</h3>
-        <form className="form" name={props.name}>
+        <form className="form" name={props.name} onSubmit={props.onSubmit}>
           {props.children}
           <button type="submit" className="form__save-button">
             {props.buttonText}

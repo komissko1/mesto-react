@@ -1,14 +1,15 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm.js";
+import Popup from "./Popup.js";
 
 function AddPlacePopup(props) {
   const [placeName, setPlaceNameState] = React.useState("");
   const [placeUrl, setPlaceUrlState] = React.useState("");
 
   React.useEffect(() => {
-    setPlaceNameState('');
-    setPlaceUrlState('');
-  },[props.isOpen]);
+    setPlaceNameState("");
+    setPlaceUrlState("");
+  }, [props.isOpen]);
 
   function handleNameChange(e) {
     setPlaceNameState(e.target.value);
@@ -24,11 +25,13 @@ function AddPlacePopup(props) {
   }
 
   return (
-    <PopupWithForm
-          name="add"
+    <Popup
+      isOpen={props.isOpen}
+      name={props.name}
+      onClose={props.onClose}
+      children={
+        <PopupWithForm
           title="Новое место"
-          isOpen={props.isOpen}
-          onClose={props.onClose}
           onSubmit={handleSubmit}
           buttonText="Сохранить"
         >
@@ -59,8 +62,9 @@ function AddPlacePopup(props) {
             <span className="form__input-error" id="cardLink-alert"></span>
           </label>
         </PopupWithForm>
+      }
+    />
   );
 }
 
 export default AddPlacePopup;
-

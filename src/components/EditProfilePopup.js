@@ -1,6 +1,5 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm.js";
-import Popup from "./Popup.js";
 import {
   CurrentUserContext,
   currentUser,
@@ -30,47 +29,43 @@ function EditProfilePopup(props) {
   }
 
   return (
-    <Popup
+    <PopupWithForm
+      title="Редактировать профиль"
+      onSubmit={handleSubmit}
+      buttonText="Сохранить"
       isOpen={props.isOpen}
       name={props.name}
       onClose={props.onClose}
-      children={
-        <PopupWithForm
-          title="Редактировать профиль"
-          onSubmit={handleSubmit}
-          buttonText="Сохранить"
-        >
-          <label className="form__field">
-            <input
-              className="form__input"
-              type="text"
-              id="name"
-              placeholder="Имя"
-              minLength="2"
-              maxLength="40"
-              required
-              value={`${name}`}
-              onChange={handleNameChange}
-            />
-            <span className="form__input-error" id="name-alert"></span>
-          </label>
-          <label className="form__field">
-            <input
-              className="form__input"
-              type="text"
-              id="job"
-              placeholder="Занятие"
-              minLength="2"
-              maxLength="200"
-              required
-              value={`${description}`}
-              onChange={handleDescriptionChange}
-            />
-            <span className="form__input-error" id="job-alert"></span>
-          </label>
-        </PopupWithForm>
-      }
-    />
+    >
+      <label className="form__field">
+        <input
+          className="form__input"
+          type="text"
+          id="name"
+          placeholder="Имя"
+          minLength="2"
+          maxLength="40"
+          required
+          value={`${name}`}
+          onChange={handleNameChange}
+        />
+        <span className="form__input-error" id="name-alert"></span>
+      </label>
+      <label className="form__field">
+        <input
+          className="form__input"
+          type="text"
+          id="job"
+          placeholder="Занятие"
+          minLength="2"
+          maxLength="200"
+          required
+          value={`${description}`}
+          onChange={handleDescriptionChange}
+        />
+        <span className="form__input-error" id="job-alert"></span>
+      </label>
+    </PopupWithForm>
   );
 }
 

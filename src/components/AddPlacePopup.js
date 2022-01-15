@@ -25,45 +25,41 @@ function AddPlacePopup(props) {
   }
 
   return (
-    <Popup
+    <PopupWithForm
+      title="Новое место"
+      onSubmit={handleSubmit}
+      buttonText="Сохранить"
       isOpen={props.isOpen}
       name={props.name}
       onClose={props.onClose}
-      children={
-        <PopupWithForm
-          title="Новое место"
-          onSubmit={handleSubmit}
-          buttonText="Сохранить"
-        >
-          <label className="form__field">
-            <input
-              className="form__input"
-              type="text"
-              id="cardName"
-              placeholder="Название"
-              minLength="2"
-              maxLength="30"
-              required
-              value={`${placeName}`}
-              onChange={handleNameChange}
-            />
-            <span className="form__input-error" id="cardName-alert"></span>
-          </label>
-          <label className="form__field">
-            <input
-              className="form__input"
-              type="url"
-              id="cardLink"
-              placeholder="Ссылка на картинку"
-              required
-              value={`${placeUrl}`}
-              onChange={handlePlaceUrlChange}
-            />
-            <span className="form__input-error" id="cardLink-alert"></span>
-          </label>
-        </PopupWithForm>
-      }
-    />
+    >
+      <label className="form__field">
+        <input
+          className="form__input"
+          type="text"
+          id="cardName"
+          placeholder="Название"
+          minLength="2"
+          maxLength="30"
+          required
+          value={`${placeName}`}
+          onChange={handleNameChange}
+        />
+        <span className="form__input-error" id="cardName-alert"></span>
+      </label>
+      <label className="form__field">
+        <input
+          className="form__input"
+          type="url"
+          id="cardLink"
+          placeholder="Ссылка на картинку"
+          required
+          value={`${placeUrl}`}
+          onChange={handlePlaceUrlChange}
+        />
+        <span className="form__input-error" id="cardLink-alert"></span>
+      </label>
+    </PopupWithForm>
   );
 }
 

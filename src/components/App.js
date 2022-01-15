@@ -4,7 +4,6 @@ import api from "../utils/api.js";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
-// import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
@@ -23,7 +22,7 @@ function App() {
     link: "",
   });
   const [avatarUrl, setAvatarUrl] = React.useState("");
-  const [currentUser, setCurrentUser] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
@@ -69,7 +68,7 @@ function App() {
         currentUser.avatar = url;
         closeAllPopups();
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   }
 
   function handleAddPlaceSubmit(name, url) {
@@ -102,17 +101,22 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    api.changeCardLikeStatus(card._id, isLiked).then((newCard) => {
-      const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
-      setCards(newCards);
-    });
+    api
+      .changeCardLikeStatus(card._id, isLiked)
+      .then((newCard) => {
+        const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
+        setCards(newCards);
+      })
+      .catch((err) => console.log(err));
   }
 
   function handleCardDelete(card) {
-    api.deleteCardData(card._id).then(() => {
-      const newCards = cards.filter((c) => c._id !== card._id);
-      setCards(newCards);
-    });
+    api
+      .deleteCardData(card._id)
+      .then(() => {
+        setCards((cards) => cards.filter((c) => c._id !== card._id));
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
